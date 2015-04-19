@@ -1,0 +1,3 @@
+usr_data = load '/user/student/srajpx/users.csv' using PigStorage(',') as (usr_login, usr_nm, state);
+state_data = filter usr_data by state == 'NY';
+dump state_data;

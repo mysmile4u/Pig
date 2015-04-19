@@ -1,0 +1,4 @@
+tweet_data = load '/user/student/srajpx/tweets.csv' using PigStorage(',') as (tweet_id, tweeted_msg, usr_login);
+filtered_tweets = filter tweet_data by (tweeted_msg matches '.*favorite.*');
+ordered = order filtered_tweets by tweet_id;
+dump ordered;

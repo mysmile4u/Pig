@@ -1,0 +1,6 @@
+usr_data = load '/user/student/srajpx/users.csv' using PigStorage(',') as (usr_login, usr_nm, state);
+tweet_data = load '/user/student/srajpx/tweets.csv' using PigStorage(',') as (tweet_id, tweeted_msg, usr_login);
+jnd = join usr_data by usr_login, tweet_data by usr_login;
+grp = group jnd by usr_nm;
+tweet_cnt = foreach grp generate group, COUNT(jnd.tweet_id);
+dump tweet_cnt;
